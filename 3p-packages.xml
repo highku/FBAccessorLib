@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+
+<project name="fbAccessorLib" basedir=".">
+<property name="3p.dir" value="./thirdParty/"/>
+<!--
+    Enable the packages that you would like to include
+-->
+    <property name="log4j" value = "log4j-1.2.8"/>
+    <property name="json" value = "json-20090211"/>
+    <property name="jackson" value = "jackson-1.9"/>
+    <property name="reflections" value = "reflections-0.9.5"/>
+
+    <target name="3p-packages">
+        <path id="3p-classpath">
+            <fileset dir="${3p.dir}/${log4j}" includes="*.jar"/>
+            <fileset dir="${3p.dir}/${json}" includes="*.jar"/>
+            <fileset dir="${3p.dir}/${jackson}" includes="*.jar"/>
+            <fileset dir="${3p.dir}/${reflections}" includes="*.jar"/>
+        </path>
+    </target>
+
+    <target name="3p-packages-setup">
+        <echo message="Copying the third-party jars over"/>
+        <mkdir dir="${schema-setup.dir}/lib/"/>
+
+        <copy todir="${schema-setup.dir}/lib/">
+            <fileset dir="${3p.dir}/${log4j}" includes="*.jar"/>
+        </copy>
+
+        <copy todir="${schema-setup.dir}/lib/">
+            <fileset dir="${3p.dir}/${json}" includes="*.jar"/>
+        </copy>
+
+        <copy todir="${schema-setup.dir}/lib/">
+            <fileset dir="${3p.dir}/${jackson}" includes="*.jar"/>
+        </copy>
+
+    </target>
+</project>
